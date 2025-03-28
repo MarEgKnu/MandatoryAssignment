@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Utility
 {
-    public abstract class Logger
+    public class Logger
     {
-        protected Logger(TraceSource ts)
+        public Logger(TraceSource ts)
         {
-            TraceSource = ts;
+            _traceSource = ts;
         }
-        protected TraceSource TraceSource { get; }
+        protected TraceSource _traceSource;
+
+        public void AddListener(TraceListener traceListener)
+        {
+            _traceSource.Listeners.Add(traceListener);
+        }
 
         public virtual void TraceEvent(TraceEventType type, int id, string message)
         {
-            TraceSource.TraceEvent(type, id, message);
-            TraceSource.Flush();
+            _traceSource.TraceEvent(type, id, message);
+            _traceSource.Flush();
         }
     }
 }

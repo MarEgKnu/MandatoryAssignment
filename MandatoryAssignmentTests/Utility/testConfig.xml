@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+	<Port>6000</Port>
+	<StopPort>6001</StopPort>
+	<IPAddress>any</IPAddress>
+	<Password>haha123</Password>
+</Config>

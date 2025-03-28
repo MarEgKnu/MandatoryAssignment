@@ -10,7 +10,7 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class GameState : IGameState
     {
-        public static GameState CurrentState { get; private set; }
+        public static IGameState CurrentState { get; private set; }
         protected GameState(IWorld world, ConfigLoader config, Logger logger)
         {
             World = world;
@@ -23,5 +23,10 @@ namespace MandatoryAssignment.AbstractModels
         public Logger Logger {  get; }
 
         public ConfigLoader Config { get; }
+
+        public virtual void LoadConfig()
+        {
+            Config.LoadConfig(World);
+        }
     }
 }

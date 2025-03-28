@@ -1,4 +1,5 @@
-﻿using MandatoryAssignment.Utility;
+﻿using MandatoryAssignment.AbstractModels;
+using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace MandatoryAssignment.Interfaces
         Logger Logger { get; }
 
         ConfigLoader Config { get; }
+        public void LoadConfig();
     }
 }
