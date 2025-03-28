@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
-
-    public interface IWorld
+    public interface IGameState
     {
-        bool Initialized { get; }
-        public int MaxX { get; }
-        public int MaxY { get; }
+        IWorld World { get; }
 
-        public void LoadConfig(ConfigLoader loader);
+        Logger Logger { get; }
+
+        ConfigLoader Config { get; }
     }
 }
