@@ -13,7 +13,7 @@ namespace MandatoryAssignment.Utility
         {
             TraceSource = ts;
         }
-        private TraceSource TraceSource { get; }
+        protected TraceSource TraceSource { get; }
 
         public virtual void TraceEvent(TraceEventType type, int id, string message)
         {

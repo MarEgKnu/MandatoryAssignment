@@ -16,7 +16,7 @@ namespace MandatoryAssignment.Utility
         {
             _path = path;
         }
-        private string _path;
+        protected string _path;
         public void LoadConfig(IWorld world)
         {
             if (!File.Exists(_path))

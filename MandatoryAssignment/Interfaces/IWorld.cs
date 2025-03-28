@@ -11,8 +11,8 @@ namespace MandatoryAssignment.Interfaces
     public interface IWorld
     {
         bool Initialized { get; }
-        public int MaxX { get; }
-        public int MaxY { get; }
+        public int MaxX { get; set; }
+        public int MaxY { get; set; }
 
         public void LoadConfig(ConfigLoader loader);
     }
