@@ -24,6 +24,11 @@ namespace MandatoryAssignment.Interfaces
         IWorldObjectRepository WorldObjects { get; }
 
         /// <summary>
+        /// An IWorldEntityRepository containing all world entities currently in the game. The key used for lookup is the objects unique ID
+        /// </summary>
+        IWorldEntityRepository WorldEntities{ get; }
+
+        /// <summary>
         /// Once called, all properties which are initialization-only should be closed for modifiation
         /// </summary>
         void Initialize();
