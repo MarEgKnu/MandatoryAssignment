@@ -11,5 +11,7 @@ namespace MandatoryAssignment.Interfaces
         string Name { get; }
         bool Lootable { get; }
         bool Removable { get; }
+
+        bool Walkable { get; }
     }
 }

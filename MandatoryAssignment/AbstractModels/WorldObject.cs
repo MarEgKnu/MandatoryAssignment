@@ -14,5 +14,7 @@ namespace MandatoryAssignment.AbstractModels
         public bool Lootable => throw new NotImplementedException();
 
         public bool Removable => throw new NotImplementedException();
+
+        public bool Walkable => throw new NotImplementedException();
     }
 }
