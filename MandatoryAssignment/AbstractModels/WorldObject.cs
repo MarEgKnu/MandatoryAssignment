@@ -21,7 +21,7 @@ namespace MandatoryAssignment.AbstractModels
             ID = GenerateNextUniqueID();
 
         }
-        protected static Random _rng = new Random();
+        protected static Random _rng = new Random(Guid.NewGuid().GetHashCode());
         public uint ID { get; }
         public string Name { get; }
 
