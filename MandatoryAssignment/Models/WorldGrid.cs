@@ -16,6 +16,11 @@ namespace MandatoryAssignment.Models
         {
             _grid = new IGridData[x, y];
         }
+
+        public uint MaxY { get { return (uint)_grid.GetLongLength(1); } }
+
+        public uint MaxX { get { return (uint)_grid.GetLongLength(0); } }
+
         public IWorldObject? GetObjectAtCoordinate(Coordinate coords)
         {
             return GameState.CurrentState.World.WorldObjects.Read( _grid[coords.x, coords.y].WorldObjectID);

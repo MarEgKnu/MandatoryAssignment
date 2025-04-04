@@ -1,5 +1,6 @@
 ﻿using MandatoryAssignment.Interfaces;
 using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Structs;
 using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,13 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(uint maxX, uint maxY)
+        protected World(IGrid grid, IWorldObjectRepository worldObjectRepo)
         {
             Initialized = false;
-            MaxX = maxX;
-            MaxY = maxY;
-            
+            MaxX = grid.MaxX;
+            MaxY = grid.MaxY;
+            _grid = grid;
+            WorldObjects = worldObjectRepo;
         }
         protected uint _maxX;
         protected uint _maxY;
