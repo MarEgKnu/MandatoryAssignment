@@ -15,10 +15,12 @@ namespace MandatoryAssignment.AbstractModels
         {
             Initialized = false;
             MaxX = maxX;
-            MaxY = maxY;            
+            MaxY = maxY;
+            
         }
         protected uint _maxX;
         protected uint _maxY;
+        protected IGrid _grid;
 
         public void Initialize()
         {
@@ -62,5 +64,21 @@ namespace MandatoryAssignment.AbstractModels
 
         public bool Initialized { get; protected set; }
 
+        public IGrid WorldGrid 
+        {
+            get 
+            { 
+                return _grid; 
+            } 
+            set
+            {
+                if (Initialized)
+                {
+                    GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"class {this.GetType().Name} tired to call {MethodBase.GetCurrentMethod().Name} even after it was initialized");
+                    return;
+                }
+                _grid = value;
+            } 
+        }
     }
 }
