@@ -16,6 +16,10 @@ namespace MandatoryAssignment.AbstractModels
             World = world;
             Config = config;
             Logger = logger;
+            if(CurrentState is not null)
+            {
+                GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"Another instance of {nameof(GameState)} was created, overriding the global reference!");
+            }
             CurrentState = this;
         }
         public IWorld World { get; }
@@ -26,7 +30,13 @@ namespace MandatoryAssignment.AbstractModels
 
         public virtual void LoadConfig()
         {
-            Config.LoadConfig(World);
+            if (Config is null)
+            {
+                GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Error, 0, $"Null {nameof(ConfigLoader)} object was passed to {System.Reflection.MethodBase.GetCurrentMethod().Name}, skipping loading config file");
+                return;
+            }
+            Config.LoadConfig(this);
+            World.Initialize();
         }
     }
 }

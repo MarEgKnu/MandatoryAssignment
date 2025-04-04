@@ -11,15 +11,22 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(int maxX, int maxY)
+        protected World(uint maxX, uint maxY)
         {
             Initialized = false;
             MaxX = maxX;
             MaxY = maxY;            
         }
-        protected int _maxX;
-        protected int _maxY;
-        public int MaxX 
+        protected uint _maxX;
+        protected uint _maxY;
+
+        public void Initialize()
+        {
+            Initialized = true;
+        }
+        
+        
+        public uint MaxX 
         {
             get 
             { 
@@ -36,7 +43,7 @@ namespace MandatoryAssignment.AbstractModels
             }
         }
 
-        public int MaxY
+        public uint MaxY
         {
             get
             {
@@ -55,15 +62,5 @@ namespace MandatoryAssignment.AbstractModels
 
         public bool Initialized { get; protected set; }
 
-        public virtual void LoadConfig(ConfigLoader loader)
-        {
-            if(loader is null)
-            {
-                GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Error, 0, $"Null {nameof(ConfigLoader)} object was passed to {System.Reflection.MethodBase.GetCurrentMethod().Name}, skipping loading config file");
-                return;
-            }
-            loader.LoadConfig(this);
-            Initialized = true;
-        }
     }
 }

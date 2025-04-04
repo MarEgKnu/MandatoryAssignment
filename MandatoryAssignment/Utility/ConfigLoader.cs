@@ -24,8 +24,8 @@ namespace MandatoryAssignment.Utility
         /// Reads the config file one node at a time, and applies it to the given IWorld object.
         /// The implementation of how each node is processed is left for sublcasses to implement.
         /// </summary>
-        /// <param name="world">The IWorld object to apply the configurations to</param>
-        public void LoadConfig(IWorld world)
+        /// <param name="state">The IWorld object to apply the configurations to</param>
+        public void LoadConfig(IGameState state)
         {
             if (!File.Exists(_path))
             {
@@ -42,7 +42,7 @@ namespace MandatoryAssignment.Utility
             }
             foreach(XmlNode node in nodes)
             {
-                ProcessConfigItem(node, world);
+                ProcessConfigItem(node, state);
             }
         }
         /// <summary>
@@ -50,6 +50,6 @@ namespace MandatoryAssignment.Utility
         /// </summary>
         /// <param name="node">The node being processed</param>
         /// <param name="world">The IWorld object to apply changes to</param>
-        protected abstract void ProcessConfigItem(XmlNode node, IWorld world);
+        protected abstract void ProcessConfigItem(XmlNode node, IGameState state);
     }
 }

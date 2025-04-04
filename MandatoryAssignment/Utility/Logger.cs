@@ -19,6 +19,14 @@ namespace MandatoryAssignment.Utility
         {
             _traceSource.Listeners.Add(traceListener);
         }
+        public void RemoveListener(TraceListener traceListener)
+        {
+            _traceSource.Listeners.Remove(traceListener);
+        }
+        public void RemoveListener(string name)
+        {
+            _traceSource.Listeners.Remove(name);
+        }
 
         public virtual void TraceEvent(TraceEventType type, int id, string message)
         {
