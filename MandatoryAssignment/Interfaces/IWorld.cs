@@ -1,4 +1,5 @@
-﻿using MandatoryAssignment.Utility;
+﻿using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ namespace MandatoryAssignment.Interfaces
         /// When this variable is true, all members which should not be modified after initialization should not be able to be modified.
         /// </summary>
         bool Initialized { get; }
+
+        /// <summary>
+        /// An IWorldObjectRepository containing all world objects currently in the game. The key used for lookup is the objects unique ID
+        /// </summary>
+        IWorldObjectRepository WorldObjects { get; }
 
         /// <summary>
         /// Once called, all properties which are initialization-only should be closed for modifiation

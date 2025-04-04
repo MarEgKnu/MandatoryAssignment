@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
-    public interface IWorldObject
+    public interface IWorldItem
     {
-        uint ID { get; }
         string Name { get; }
-        bool Lootable { get; }
-        bool Removable { get; }
 
-        bool Walkable { get; }
     }
 }

@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
+    /// <summary>
+    /// A interface representing the ingame grid. The grid coordinates should not be allowed to be negative
+    /// </summary>
     public interface IGrid
     {
-        IWorldObject GetObjectAtCoordinate(Coordinate coords); 
+        /// <summary>
+        /// Returns the IWorldObject at the current coordinate in the game world. Returns null if none found.
+        /// 
+        /// </summary>
+        /// <param name="coords">The coordinate specifiying where to check</param>
+        /// <returns>The IWorldObject if one exists, or null if none</returns>
+        IWorldObject? GetObjectAtCoordinate(Coordinate coords); 
     }
 }

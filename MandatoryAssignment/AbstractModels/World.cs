@@ -1,4 +1,5 @@
 ﻿using MandatoryAssignment.Interfaces;
+using MandatoryAssignment.Interfaces.Repositories;
 using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,8 @@ namespace MandatoryAssignment.AbstractModels
         {
             Initialized = true;
         }
-        
-        
+
+        public IWorldObjectRepository WorldObjects { get; }
         public uint MaxX 
         {
             get 
@@ -80,5 +81,7 @@ namespace MandatoryAssignment.AbstractModels
                 _grid = value;
             } 
         }
+
+        
     }
 }
