@@ -23,6 +23,28 @@ namespace MandatoryAssignment.AbstractModels
         protected IList<IWorldItem> _items;
         public PositiveInt Capacity { get; protected set; }
         public string Name { get; set; }
+        
+
+        /// <summary>
+        /// Gets all sub-items which aren't composite, in all sub composite items
+        /// </summary>
+        /// <returns></returns>
+        public IList<IWorldItem> GetSubItems()
+        {
+            IList<IWorldItem> subItems = new List<IWorldItem>();
+            foreach (var item in GetItems())
+            {
+                if(item is ContainerItem container)
+                {
+                    subItems.Concat(container.GetSubItems());
+                }
+                else
+                {
+                    subItems.Add(item);
+                }
+            }
+            return subItems;
+        }
 
         public abstract bool IsItemAllowed(IWorldItem item);
 

@@ -27,14 +27,19 @@ namespace MandatoryAssignment.AbstractModels
         public Coordinate Position { get; set; }
         public IWorldItem Inventory { get; set; }
 
-        public PositiveInt Hit()
+        public virtual PositiveInt Hit()
         {
-            throw new NotImplementedException();
+            PositiveInt hitDmg = 0;
+            if(Inventory is ContainerItem container)
+            {
+                foreach(var item in container.GetSubItems())
+                {
+                    hitDmg += HitWithItem(item);
+                }
+            }
+            return hitDmg;
         }
-        public PositiveInt HitWithItem(IWorldItem item)
-        {
-            return 0;
-        }
+        public abstract PositiveInt HitWithItem(IWorldItem item);
 
         public void Loot(ILootable obj)
         {
