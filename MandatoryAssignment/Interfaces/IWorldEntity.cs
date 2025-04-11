@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MandatoryAssignment.Structs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,26 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
+    /// <summary>
+    /// Interface representing a World Entity, such as a creature/enemy
+    /// </summary>
     public interface IWorldEntity
     {
-        string Name { get; }
+        PositiveInt ID { get; }
+        string Name { get; set; }
 
-        int HitPoints { get; }
+        Coordinate Position { get; set; }
+        
+        IWorldItem Inventory { get; set; }
 
-        int Hit();
+        PositiveInt HitPoints { get; }
+
+        PositiveInt Hit();
+
+        PositiveInt HitWithItem(IWorldItem item);
 
         void ReceiveHit(int hitPoints);
 
-        void Loot(IWorldObject obj);
+        void Loot(ILootable obj);
     }
 }

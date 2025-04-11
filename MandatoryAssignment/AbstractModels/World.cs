@@ -22,8 +22,8 @@ namespace MandatoryAssignment.AbstractModels
             WorldObjects = worldObjectRepo;
             WorldEntities = worldEntities;
         }
-        protected uint _maxX;
-        protected uint _maxY;
+        protected PositiveInt _maxX;
+        protected PositiveInt _maxY;
         protected IGrid _grid;
 
         public void Initialize()
@@ -51,7 +51,7 @@ namespace MandatoryAssignment.AbstractModels
         }
 
         public IWorldObjectRepository WorldObjects { get; }
-        public uint MaxX 
+        public PositiveInt MaxX 
         {
             get 
             { 
@@ -68,7 +68,7 @@ namespace MandatoryAssignment.AbstractModels
             }
         }
 
-        public uint MaxY
+        public PositiveInt MaxY
         {
             get
             {

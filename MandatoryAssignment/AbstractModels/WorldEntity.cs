@@ -1,4 +1,5 @@
 ﻿using MandatoryAssignment.Interfaces;
+using MandatoryAssignment.Structs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,58 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class WorldEntity : IWorldEntity
     {
-        public string Name => throw new NotImplementedException();
+        protected static Random _rng = new Random(Guid.NewGuid().GetHashCode());
+        protected WorldEntity(string name, PositiveInt hitPoints)
+        {
+            Name = name;
+            HitPoints = hitPoints;
+            ID = GenerateNextUniqueID();
+              
+        }
+        public string Name {  get; set; }
 
-        public int HitPoints => throw new NotImplementedException();
+        public PositiveInt HitPoints {  get; set; }
 
-        public int Hit()
+        public PositiveInt ID { get; }
+
+        public Coordinate Position { get; set; }
+        public IWorldItem Inventory { get; set; }
+
+        public PositiveInt Hit()
         {
             throw new NotImplementedException();
         }
-
-        public void Loot(IWorldObject obj)
+        public PositiveInt HitWithItem(IWorldItem item)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
-        public void ReceiveHit(int hitPoints)
+        public void Loot(ILootable obj)
         {
-            throw new NotImplementedException();
+            obj.LootItems(this);
+            
+        }
+
+        public virtual void ReceiveHit(int hitPoints)
+        {
+            HitPoints -= hitPoints;
+            if(HitPoints <= 0)
+            {
+                // notify observers about death
+            }
+        }
+
+        protected virtual PositiveInt GenerateNextUniqueID()
+        {
+            while (true)
+            {
+                int id = _rng.Next(1, int.MaxValue);
+                if (GameState.CurrentState.World.WorldEntities.Read(id) is null)
+                {
+                    return id;
+                }
+            }
+
         }
     }
 }

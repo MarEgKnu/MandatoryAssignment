@@ -16,13 +16,20 @@ namespace MandatoryAssignment.Structs
     {
         public readonly int _value;
 
+        /// <summary>
+        /// The integer value represented by this struct
+        /// </summary>
         public int Value { get { return _value; } }
 
+        /// <summary>
+        /// Creates a new instance with the specified value. If the value is less than 0, it will be set to 0.
+        /// </summary>
+        /// <param name="value">The value to use</param>
         public PositiveInt(int value)
         {
             if(value < 0)
             {
-                throw new ArgumentOutOfRangeException("value");
+                _value = 0;
             }
             _value = value;
         }
@@ -56,6 +63,12 @@ namespace MandatoryAssignment.Structs
         {
             return !(left == right);
         }
+
+        public static implicit operator int(PositiveInt v)
+        {
+            return v.Value;
+        }
+
         public override string ToString()
         {
             return Value.ToString();

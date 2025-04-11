@@ -1,4 +1,5 @@
 ﻿using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Structs;
 using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
@@ -41,10 +42,10 @@ namespace MandatoryAssignment.Interfaces
         /// <summary>
         /// The max X Coordinate for the world. Must not be below 0, and should not be settable after initialization.
         /// </summary>
-        public uint MaxX { get; set; }
+        public PositiveInt MaxX { get; set; }
         /// <summary>
         /// The max Y Coordinate for the world. Must not be below 0, and should not be settable after initialization.
         /// </summary>
-        public uint MaxY { get; set; }
+        public PositiveInt MaxY { get; set; }
     }
 }

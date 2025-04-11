@@ -9,9 +9,9 @@ namespace MandatoryAssignment.Structs
 {
     public readonly struct Coordinate
     {
-        public readonly uint x;
-        public readonly uint y;
-        public Coordinate(uint x, uint y)
+        public readonly PositiveInt x;
+        public readonly PositiveInt y;
+        public Coordinate(PositiveInt x, PositiveInt y)
         {
             this.x = x; 
             this.y = y;
@@ -34,7 +34,7 @@ namespace MandatoryAssignment.Structs
         }
         public override int GetHashCode()
         {
-            uint hash = 23;
+            int hash = 23;
             hash = hash * 31 + x;
             hash = hash * 31 + y;
             return hash;
@@ -48,6 +48,23 @@ namespace MandatoryAssignment.Structs
         public static bool operator !=(Coordinate left, Coordinate right)
         {
             return !(left == right);
+        }
+
+        public Coordinate XYDiffrence(Coordinate other)
+        {
+            int otherX = other.x;
+            int otherY = other.y;
+            int thisX = this.x;
+            int thisY = this.y;
+            int xDiff = Math.Abs(otherX - thisX);
+            int yDiff = Math.Abs(otherY - thisY);
+            return new Coordinate(xDiff, yDiff);
+                      
+        }
+        public bool IsInRange(Coordinate other, PositiveInt range)
+        {
+            Coordinate diffrence = XYDiffrence(other);
+            return Math.Max(diffrence.x, diffrence.y) <= range;
         }
         
     }

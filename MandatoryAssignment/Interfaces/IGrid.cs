@@ -18,15 +18,15 @@ namespace MandatoryAssignment.Interfaces
         /// </summary>
         /// <param name="coords">The coordinate specifiying where to check</param>
         /// <returns>The IWorldObject if one exists, or null if none</returns>
-        IWorldObject? GetObjectAtCoordinate(Coordinate coords); 
+        IWorldObject? GetObjectAtCoordinate(Coordinate coords);
 
         /// <summary>
         /// The max X coordiate of the grid
         /// </summary>
-        uint MaxY { get; }
+        PositiveInt MaxY { get; }
         /// <summary>
         /// The max Y coordiate of the grid
         /// </summary>
-        uint MaxX { get; }
+        PositiveInt MaxX { get; }
     }
 }

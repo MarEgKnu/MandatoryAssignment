@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MandatoryAssignment.Structs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
-    public interface IWorldObject
+    public interface IWorldObject : ILootable, IRemovable, IWalkable
     {
-        uint ID { get; }
+        PositiveInt ID { get; }
         string Name { get; }
-        bool Lootable { get; }
-        bool Removable { get; }
 
-        bool Walkable { get; }
+        Coordinate Position { get; }
+
     }
 }
