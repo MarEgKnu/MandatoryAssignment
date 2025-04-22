@@ -12,6 +12,7 @@ namespace MandatoryAssignment.Interfaces
     /// </summary>
     public interface IWorldEntity
     {
+        DamageReduction BaseDamageReduction { get; }
         PositiveInt ID { get; }
         string Name { get; set; }
 
@@ -21,11 +22,11 @@ namespace MandatoryAssignment.Interfaces
 
         PositiveInt HitPoints { get; }
 
+
         PositiveInt Hit();
 
-        PositiveInt HitWithItem(IWorldItem item);
+        void ReceiveHit(PositiveInt hitPoints);
 
-        void ReceiveHit(int hitPoints);
 
         void Loot(ILootable obj);
     }

@@ -14,7 +14,7 @@ namespace MandatoryAssignment.Structs
     /// </summary>
     public readonly struct PositiveInt
     {
-        public readonly int _value;
+        private readonly int _value;
 
         /// <summary>
         /// The integer value represented by this struct
@@ -31,7 +31,11 @@ namespace MandatoryAssignment.Structs
             {
                 _value = 0;
             }
-            _value = value;
+            else
+            {
+                _value = value;
+            }
+            
         }
 
         public static implicit operator PositiveInt(int value)
