@@ -16,9 +16,9 @@ namespace MandatoryAssignment.AbstractModels
         }
         public string Name { get; set; }
 
-        public abstract PositiveInt Hit();
+        public abstract PositiveInt Hit(IWorldEntity user);
 
-        public abstract PositiveInt Range();
+        public abstract PositiveInt Range(IWorldEntity user);
 
         public void Use(IWorldEntity user)
         {
@@ -28,9 +28,9 @@ namespace MandatoryAssignment.AbstractModels
         public virtual void UseOn(IWorldEntity user, IWorldEntity target)
         {
             Coordinate diff = user.Position.XYDiffrence(target.Position);
-            if(Math.Max(diff.x, diff.y) <= Range())
+            if(Math.Max(diff.x, diff.y) <= Range(user))
             {
-                target.ReceiveHit(Hit());
+                target.ReceiveHit(Hit(user));
             }          
         }
 

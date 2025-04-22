@@ -25,7 +25,7 @@ namespace MandatoryAssignment.Interfaces
 
         PositiveInt Hit();
 
-        void ReceiveHit(PositiveInt hitPoints);
+        void ReceiveHit(PositiveInt incomingDmg);
 
 
         void Loot(ILootable obj);
