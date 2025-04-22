@@ -1,8 +1,11 @@
-﻿using MandatoryAssignment.Interfaces;
+﻿using MandatoryAssignment.EventArguments;
+using MandatoryAssignment.Interfaces;
 using MandatoryAssignment.Structs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +14,10 @@ namespace MandatoryAssignment.AbstractModels
     public abstract class WorldEntity : IWorldEntity
     {
         protected static Random _rng = new Random(Guid.NewGuid().GetHashCode());
+
+        public event Action<IWorldEntity, EventArgs> OnHit;
+
+        public event Action<IWorldEntity, EventArgs> OnDeath;
 
         protected IReceiveHitStrategy _receiveHitStrategy;
         protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy)
@@ -67,13 +74,20 @@ namespace MandatoryAssignment.AbstractModels
         /// <summary>
         /// Method for the entity being hit by damage and using the ReceiveHitStrategy to compute the final damage taken. May be overwritten in subclasses
         /// </summary>
-        public virtual void ReceiveHit(PositiveInt incomingDmg)
+        /// <returns>True if the entity is still alive, false if dead</returns>
+        public virtual bool ReceiveHit(PositiveInt incomingDmg)
         {
             incomingDmg = _receiveHitStrategy.ComputeDamage(incomingDmg, this);
             HitPoints -= incomingDmg;
+            OnHit?.Invoke(this, new OnHitEventArgs(incomingDmg));
             if(HitPoints <= 0)
             {
-                // notify observers about death
+                OnDeath?.Invoke(this, new OnHitEventArgs(incomingDmg));
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
