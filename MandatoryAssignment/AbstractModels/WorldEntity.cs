@@ -24,11 +24,13 @@ namespace MandatoryAssignment.AbstractModels
         public event Action<IWorldEntity, EventArgs> OnDeath;
 
         protected IReceiveHitStrategy _receiveHitStrategy;
-        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy, PositiveInt? id = null )
+        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy, Coordinate position, IWorldItem inventory, bool IsPlayer, PositiveInt? id = null )
         {
             Name = name;
             HitPoints = hitPoints;
             BaseDamageReduction = baseDamageReduction;
+            Position = position; 
+            Inventory = inventory;
             _receiveHitStrategy = receiveHitStrategy;
             if(id is null)
             {

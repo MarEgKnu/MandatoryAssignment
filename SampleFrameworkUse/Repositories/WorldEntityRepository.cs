@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SampleFrameworkUse.Repositories
 {
@@ -101,7 +102,11 @@ namespace SampleFrameworkUse.Repositories
                     _coordinateIndex.Remove(result.Position);
                     _coordinateIndex.Add(value.Position, value);
                 }
-                
+                else
+                {
+                    _coordinateIndex[result.Position] = value;
+                }
+
                 return true;
             }
             else
@@ -119,6 +124,10 @@ namespace SampleFrameworkUse.Repositories
                 {
                     _coordinateIndex.Remove(result.Position);
                     _coordinateIndex.Add(value.Position, value);
+                }
+                else
+                {
+                    _coordinateIndex[result.Position] = value;
                 }
 
                 return true;
