@@ -45,11 +45,6 @@ namespace MandatoryAssignment.Interfaces
         void Initialize();
 
         /// <summary>
-        /// The 2-dimensional grid for the world. Should not be settable after initialization.
-        /// </summary>
-        IGrid WorldGrid { get; }
-
-        /// <summary>
         /// The max X Coordinate for the world. Must not be below 0, and should not be settable after initialization.
         /// </summary>
         public PositiveInt MaxX { get; set; }

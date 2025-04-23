@@ -15,19 +15,15 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(IGrid grid, IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties)
+        protected World(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties)
         {
             Initialized = false;
-            MaxX = grid.MaxX;
-            MaxY = grid.MaxY;
-            _grid = grid;
             WorldObjects = worldObjectRepo;
             WorldEntities = worldEntities;
             SelectableDifficulties = difficulties;
         }
         protected PositiveInt _maxX;
         protected PositiveInt _maxY;
-        protected IGrid _grid;
 
         public void Initialize()
         {
@@ -131,21 +127,5 @@ namespace MandatoryAssignment.AbstractModels
 
         public bool Initialized { get; protected set; }
 
-        public IGrid WorldGrid 
-        {
-            get 
-            { 
-                return _grid; 
-            } 
-            set
-            {
-                if (Initialized)
-                {
-                    GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"class {this.GetType().Name} tired to call {MethodBase.GetCurrentMethod().Name} even after it was initialized");
-                    return;
-                }
-                _grid = value;
-            } 
-        }
     }
 }
