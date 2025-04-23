@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Structs
 {
+    /// <summary>
+    /// Represents a 2-dimenstional coordinate in the game world
+    /// </summary>
     public readonly struct Coordinate
     {
         public readonly PositiveInt x;
@@ -49,7 +52,11 @@ namespace MandatoryAssignment.Structs
         {
             return !(left == right);
         }
-
+        /// <summary>
+        /// Computes the coordinate diffrence between two coordinates.
+        /// </summary>
+        /// <param name="other">The other coordinate to compare to</param>
+        /// <returns>A Coordinate denoting the abseloute diffrence</returns>
         public Coordinate XYDiffrence(Coordinate other)
         {
             int otherX = other.x;
@@ -61,6 +68,12 @@ namespace MandatoryAssignment.Structs
             return new Coordinate(xDiff, yDiff);
                       
         }
+        /// <summary>
+        /// Checks if the other coordinate is within the given range. It is assumed that diagonal movement is possible
+        /// </summary>
+        /// <param name="other">The other coordinate to check the range to</param>
+        /// <param name="range">The amount of tiles that can be moved at maximum</param>
+        /// <returns></returns>
         public bool IsInRange(Coordinate other, PositiveInt range)
         {
             Coordinate diffrence = XYDiffrence(other);
