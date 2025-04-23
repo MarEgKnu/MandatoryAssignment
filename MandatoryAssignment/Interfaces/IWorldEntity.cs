@@ -12,6 +12,11 @@ namespace MandatoryAssignment.Interfaces
     /// </summary>
     public interface IWorldEntity
     {
+
+        /// <summary>
+        /// Bool representing if the current entity is player-controlled
+        /// </summary>
+        bool IsPlayer { get; }
         /// <summary>
         /// The base damage reduction for the entity without any other factors.
         /// </summary>
@@ -50,7 +55,10 @@ namespace MandatoryAssignment.Interfaces
         /// <returns>True if the entity is still alive, false if dead</returns>
         bool ReceiveHit(PositiveInt incomingDmg);
 
-
+        /// <summary>
+        /// Makes the entity loot the specified object, possibly adding loot to it's inventory.
+        /// </summary>
+        /// <param name="obj">The object to loot</param>
         void Loot(ILootable obj);
     }
 }

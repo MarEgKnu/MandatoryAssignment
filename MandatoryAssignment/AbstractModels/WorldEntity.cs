@@ -37,6 +37,9 @@ namespace MandatoryAssignment.AbstractModels
             
               
         }
+
+        public bool IsPlayer {  get; }
+
         public string Name {  get; set; }
 
         public DamageReduction BaseDamageReduction { get; }
@@ -65,6 +68,11 @@ namespace MandatoryAssignment.AbstractModels
             {
                 hitDmg += HitWithItem(Inventory);
             }
+            if(IsPlayer)
+            {
+                hitDmg = (PositiveInt)Math.Round(hitDmg * GameState.CurrentState.World.SelectedDifficulty.PlayerDmgDealtMult(), 0);
+            }
+            
             return hitDmg;
         }
         /// <summary>
@@ -86,6 +94,10 @@ namespace MandatoryAssignment.AbstractModels
         public virtual bool ReceiveHit(PositiveInt incomingDmg)
         {
             incomingDmg = _receiveHitStrategy.ComputeDamage(incomingDmg, this);
+            if (IsPlayer)
+            {
+                incomingDmg = (PositiveInt)Math.Round(incomingDmg * GameState.CurrentState.World.SelectedDifficulty.PlayerDmgTakenMult(), 0);
+            }
             HitPoints -= incomingDmg;
             OnHit?.Invoke(this, new OnHitEventArgs(incomingDmg));
             if(HitPoints <= 0)

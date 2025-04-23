@@ -20,6 +20,16 @@ namespace MandatoryAssignment.Interfaces
         bool Initialized { get; }
 
         /// <summary>
+        /// An IDifficultyRepository containing all the selectable difficulties currently in the game.
+        /// </summary>
+        IDifficultyRepository SelectableDifficulties { get; }
+
+        /// <summary>
+        /// The currently selected difficulty for the world
+        /// </summary>
+        IDifficulty SelectedDifficulty { get; set; }
+
+        /// <summary>
         /// An IWorldObjectRepository containing all world objects currently in the game. The key used for lookup is the objects unique ID
         /// </summary>
         IWorldObjectRepository WorldObjects { get; }

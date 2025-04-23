@@ -13,11 +13,19 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class WorldObject : IWorldObject
     {
-        public WorldObject(string name, IWorldItem loot)
+        public WorldObject(string name, IWorldItem loot, PositiveInt? id = null)
         {
             Name = name;
             Loot = loot;
-            ID = GenerateNextUniqueID();
+            if(id is null)
+            {
+                ID = GenerateNextUniqueID();
+            }
+            else
+            {
+                ID = id.Value;
+            }
+            
 
         }
         protected static Random _rng = new Random(Guid.NewGuid().GetHashCode());

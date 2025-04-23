@@ -23,7 +23,7 @@ namespace MandatoryAssignment.Interfaces
         double PlayerDmgDealtMult();
         /// <summary>
         /// The multiplier to the damage the player receives while the difficulty is in effect.
-        /// Should only return positive decimal values, ie. 1 = the same damage, 2 = double damage
+        /// Should only return positive decimal values, ie. 1 = the same damage, 2 = double damage, 0.5 = half damage
         /// </summary>
         /// <returns>A double representing the multiplier</returns>
         double PlayerDmgTakenMult();

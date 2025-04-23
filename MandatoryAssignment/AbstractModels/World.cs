@@ -13,7 +13,7 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(IGrid grid, IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities)
+        protected World(IGrid grid, IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties)
         {
             Initialized = false;
             MaxX = grid.MaxX;
@@ -21,6 +21,7 @@ namespace MandatoryAssignment.AbstractModels
             _grid = grid;
             WorldObjects = worldObjectRepo;
             WorldEntities = worldEntities;
+            SelectableDifficulties = difficulties;
         }
         protected PositiveInt _maxX;
         protected PositiveInt _maxY;
@@ -30,7 +31,7 @@ namespace MandatoryAssignment.AbstractModels
         {
             Initialized = true;
         }
-
+        protected IDifficultyRepository _selectableDifficulties;
         protected IWorldEntityRepository _worldEntities;
         protected IWorldObjectRepository _worldObjects;
         public IWorldEntityRepository WorldEntities 
@@ -49,6 +50,25 @@ namespace MandatoryAssignment.AbstractModels
                 _worldEntities = value;
             }
         }
+
+        public IDifficultyRepository SelectableDifficulties
+        {
+            get
+            {
+                return _selectableDifficulties;
+            }
+            set
+            {
+                if (Initialized)
+                {
+                    GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"class {this.GetType().Name} tired to call {MethodBase.GetCurrentMethod().Name} even after it was initialized");
+                    return;
+                }
+                _selectableDifficulties = value;
+            }
+        }
+
+        public IDifficulty SelectedDifficulty { get; set; }
 
         public IWorldObjectRepository WorldObjects { get; }
         public PositiveInt MaxX 
@@ -103,7 +123,5 @@ namespace MandatoryAssignment.AbstractModels
                 _grid = value;
             } 
         }
-
-        
     }
 }
