@@ -11,11 +11,12 @@ namespace MandatoryAssignment.AbstractModels
     public abstract class GameState : IGameState
     {
         public static IGameState CurrentState { get; private set; }
-        protected GameState(IWorld world, ConfigLoader config, Logger logger)
+        protected GameState(IWorld world, ConfigLoader config, Logger logger, IGameLoop gameLoop)
         {
             World = world;
             Config = config;
             Logger = logger;
+            GameLoop = gameLoop;
             if(CurrentState is not null)
             {
                 GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"Another instance of {nameof(GameState)} was created, overriding the global reference!");
@@ -28,6 +29,8 @@ namespace MandatoryAssignment.AbstractModels
 
         public ConfigLoader Config { get; }
 
+        public IGameLoop GameLoop { get; }
+
         public virtual void LoadConfig()
         {
             if (Config is null)
@@ -37,6 +40,11 @@ namespace MandatoryAssignment.AbstractModels
             }
             Config.LoadConfig(this);
             World.Initialize();
+        }
+
+        public void StartGameLoop()
+        {
+            GameLoop.Start();
         }
     }
 }
