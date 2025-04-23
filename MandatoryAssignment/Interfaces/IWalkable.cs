@@ -18,10 +18,5 @@ namespace MandatoryAssignment.Interfaces
         /// <returns>True if can walk, false if not</returns>
         bool CanWalk(IWorldEntity walker);
 
-        /// <summary>
-        /// Attempts to walk on this object as the "walker" entity. If not allowed, will fail.
-        /// </summary>
-        /// <param name="walker">The entity trying to walk on this object</param>
-        void TryWalk(IWorldEntity walker);
     }
 }

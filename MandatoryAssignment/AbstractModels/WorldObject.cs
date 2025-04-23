@@ -68,17 +68,5 @@ namespace MandatoryAssignment.AbstractModels
 
         public abstract bool CanWalk(IWorldEntity walker);
 
-        public void TryWalk(IWorldEntity walker)
-        {
-            if(CanWalk(walker))
-            {
-                // maybe implement pathfinding strategy classes and max moves for an entity per turn for use here later, for now, one can only move one adjacent tile
-                if(walker.Position.IsInRange(Position, 1))
-                {
-                    walker.Position = Position;
-                }
-
-            }
-        }
     }
 }

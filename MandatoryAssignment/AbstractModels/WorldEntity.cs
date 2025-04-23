@@ -110,6 +110,8 @@ namespace MandatoryAssignment.AbstractModels
                 return true;
             }
         }
+
+        public abstract IMoveResult Move(Coordinate newPos);
         /// <summary>
         /// Generates a unique Positive integer ID which must not be 0 if the id parameter in the constructor is omitted or null. May be overwritten in subclasses
         /// </summary>

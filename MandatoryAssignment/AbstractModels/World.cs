@@ -1,11 +1,13 @@
 ﻿using MandatoryAssignment.Interfaces;
 using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Models;
 using MandatoryAssignment.Structs;
 using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +33,28 @@ namespace MandatoryAssignment.AbstractModels
         {
             Initialized = true;
         }
+
+        public virtual IMoveResult MoveEntity(IWorldEntity entity, Coordinate newPos)
+        {
+            if(newPos.y > _maxY || newPos.x > _maxX)
+            {
+                return new MoveResult(false, "Position out of bounds");
+            }
+            if(WorldEntities.Read(newPos) != null)
+            {
+                return new MoveResult(false, "Another entity is blocking the position");
+            }
+            IWorldObject? collidingObj = WorldObjects.Read(newPos);
+            if (collidingObj != null)
+            {
+                if (!collidingObj.CanWalk(entity))
+                {
+                    return new MoveResult(false, "A non-walkable object is blocking the position");
+                }
+            }
+            return entity.Move(newPos);
+        }
+
         protected IDifficultyRepository _selectableDifficulties;
         protected IWorldEntityRepository _worldEntities;
         protected IWorldObjectRepository _worldObjects;
