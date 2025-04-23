@@ -1,4 +1,5 @@
-﻿using MandatoryAssignment.Structs;
+﻿using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Structs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,8 @@ namespace MandatoryAssignment.Interfaces
         /// Moves the entity to the specified coordinates. Collision check with other objects should be checked at the IWorld level.
         /// </summary>
         /// <param name="newPos">The new position to move to</param>
-        IMoveResult Move(Coordinate newPos);
+        /// <param name="world">The injected world object</param>
+        IMoveResult Move(Coordinate newPos, IWorld world );
 
     }
 }

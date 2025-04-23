@@ -52,12 +52,5 @@ namespace MandatoryAssignment.Interfaces
         /// The max Y Coordinate for the world. Must not be below 0, and should not be settable after initialization.
         /// </summary>
         public PositiveInt MaxY { get; set; }
-        /// <summary>
-        /// Attempts to move the specified entity to the coordinates. 
-        /// </summary>
-        /// <param name="entity">The entity to attempt to move</param>
-        /// <param name="newPos">The new position to try to move to</param>
-        /// <returns>An IMoveResult object denoting the result of the movement</returns>
-        public IMoveResult MoveEntity(IWorldEntity entity, Coordinate newPos);
     }
 }

@@ -1,10 +1,14 @@
 ﻿using MandatoryAssignment.EventArguments;
 using MandatoryAssignment.Interfaces;
+using MandatoryAssignment.Interfaces.Repositories;
+using MandatoryAssignment.Models;
 using MandatoryAssignment.Structs;
+using MandatoryAssignment.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,7 +115,38 @@ namespace MandatoryAssignment.AbstractModels
             }
         }
 
-        public abstract IMoveResult Move(Coordinate newPos);
+        public virtual IMoveResult Move(Coordinate newPos, IWorld world)
+        {
+            if (newPos.y > world.MaxY || newPos.x > world.MaxX)
+            {
+                return new MoveResult(false, "Position out of bounds");
+            }
+            if (world.WorldEntities.Read(newPos) != null)
+            {
+                return new MoveResult(false, "Another entity is blocking the position");
+            }
+            IWorldObject? collidingObj = world.WorldObjects.Read(newPos);
+            if (collidingObj != null)
+            {
+                if (!collidingObj.CanWalk(this))
+                {
+                    return new MoveResult(false, "A non-walkable object is blocking the position");
+                }
+            }
+            if(world.WorldEntities.Read(Position) != null)
+            {
+                world.WorldEntities.Delete(Position);
+                Position = newPos;
+                world.WorldEntities.Add(this);
+                return new MoveResult(true, "Sucessfully walked to the destination");
+            }
+            else
+            {
+                GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Error, 0, $"Entity {{{this}}} was not found in the entity repository when trying to move!");
+                return new MoveResult(false, "Entity cannot be located in the entity repository");
+            }
+            
+        }
         /// <summary>
         /// Generates a unique Positive integer ID which must not be 0 if the id parameter in the constructor is omitted or null. May be overwritten in subclasses
         /// </summary>
