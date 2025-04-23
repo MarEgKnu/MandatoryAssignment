@@ -45,26 +45,50 @@ namespace MandatoryAssignment.AbstractModels
             }
             return subItems;
         }
-
+        /// <summary>
+        /// Checks if the specified item is allowed in this container
+        /// </summary>
+        /// <param name="item">The item to check</param>
+        /// <returns>True if allowed, false if not</returns>
         public abstract bool IsItemAllowed(IWorldItem item);
+        /// <summary>
+        /// Attempts to add the specified item to the container
+        /// </summary>
+        /// <param name="item">The item to add</param>
+        /// <returns>True if the item can be added, false if not</returns>
+        public abstract bool Add(IWorldItem item);
+        /// <summary>
+        /// Removes the specified item from the container. Should also check all composite containers for the item to remove
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>True if the item was sucessfully removed, false if not</returns>
+        public abstract bool Remove(IWorldItem item);
 
-        public abstract void Add(IWorldItem item);
 
-        public abstract void Remove(IWorldItem item);
+        /// <summary>
+        /// Removes the item at the specified slotID from the container.
+        /// </summary>
+        /// <param name="slotId">The slotID to remove the item at</param>
+        /// <returns>True if the item was sucessfully removed, false if not</returns>
+        public abstract bool RemoveBySlot(PositiveInt slotId);
 
-        public abstract IList<IWorldItem> GetItems();
+
+        /// <summary>
+        /// Gets the item at the specified slot ID, or null if no item exists or is out of range
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>A IWorldItem at the given slot, or null if none exist or out of range</returns>
+        public abstract IWorldItem? GetItemBySlot(PositiveInt slotId);
+        /// <summary>
+        /// Returns all items, composite or not.
+        /// </summary>
+        /// <returns>A IList of items contained</returns>
+        public IList<IWorldItem> GetItems()
+        {
+            return _items;
+        }
 
         public void Use(IWorldEntity user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UseOn(IWorldEntity user, IWorldEntity target)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UseOn(IWorldEntity user, IWorldObject target)
         {
             throw new NotImplementedException();
         }
