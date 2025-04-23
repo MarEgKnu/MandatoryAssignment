@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MandatoryAssignment", "MandatoryAssignment\MandatoryAssignment.csproj", "{33577FB1-E687-47B7-B03D-D53BE6A83570}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MandatoryAssignmentTests", "MandatoryAssignmentTests\MandatoryAssignmentTests.csproj", "{86E1B94E-3155-431A-8276-1067C35B65B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleFrameworkUse", "SampleFrameworkUse\SampleFrameworkUse.csproj", "{61F05D66-464A-466B-984C-002AA96AFAB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{86E1B94E-3155-431A-8276-1067C35B65B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86E1B94E-3155-431A-8276-1067C35B65B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86E1B94E-3155-431A-8276-1067C35B65B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F05D66-464A-466B-984C-002AA96AFAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F05D66-464A-466B-984C-002AA96AFAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F05D66-464A-466B-984C-002AA96AFAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F05D66-464A-466B-984C-002AA96AFAB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
