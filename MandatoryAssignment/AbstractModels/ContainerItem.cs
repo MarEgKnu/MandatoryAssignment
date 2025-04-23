@@ -28,7 +28,7 @@ namespace MandatoryAssignment.AbstractModels
         /// <summary>
         /// Gets all sub-items which aren't composite, in all sub composite items
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A IList of all sub items which arent composite</returns>
         public IList<IWorldItem> GetSubItems()
         {
             IList<IWorldItem> subItems = new List<IWorldItem>();
@@ -36,7 +36,7 @@ namespace MandatoryAssignment.AbstractModels
             {
                 if(item is ContainerItem container)
                 {
-                    subItems.Concat(container.GetSubItems());
+                    subItems = (IList<IWorldItem>)subItems.Concat(container.GetSubItems());
                 }
                 else
                 {

@@ -20,13 +20,21 @@ namespace MandatoryAssignment.AbstractModels
         public event Action<IWorldEntity, EventArgs> OnDeath;
 
         protected IReceiveHitStrategy _receiveHitStrategy;
-        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy)
+        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy, PositiveInt? id = null )
         {
             Name = name;
             HitPoints = hitPoints;
             BaseDamageReduction = baseDamageReduction;
             _receiveHitStrategy = receiveHitStrategy;
-            ID = GenerateNextUniqueID();
+            if(id is null)
+            {
+                ID = GenerateNextUniqueID();
+            }
+            else
+            {
+                ID = id.Value;
+            }
+            
               
         }
         public string Name {  get; set; }
@@ -90,7 +98,10 @@ namespace MandatoryAssignment.AbstractModels
                 return true;
             }
         }
-
+        /// <summary>
+        /// Generates a unique Positive integer ID which must not be 0 if the id parameter in the constructor is omitted or null. May be overwritten in subclasses
+        /// </summary>
+        /// <returns>A Unique PositiveInt ID</returns>
         protected virtual PositiveInt GenerateNextUniqueID()
         {
             while (true)
