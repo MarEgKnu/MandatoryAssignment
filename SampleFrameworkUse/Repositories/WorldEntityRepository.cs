@@ -69,6 +69,11 @@ namespace SampleFrameworkUse.Repositories
             }
         }
 
+        public ICollection<PositiveInt> GetIDKeys()
+        {
+            return _idIndex.Keys;
+        }
+
         public IWorldEntity? Read(PositiveInt key)
         {
             if(_idIndex.ContainsKey(key))

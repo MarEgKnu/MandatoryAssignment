@@ -24,13 +24,14 @@ namespace MandatoryAssignment.AbstractModels
         public event Action<IWorldEntity, EventArgs> OnDeath;
 
         protected IReceiveHitStrategy _receiveHitStrategy;
-        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy, Coordinate position, IWorldItem inventory, bool IsPlayer, PositiveInt? id = null )
+        protected WorldEntity(string name, PositiveInt hitPoints, DamageReduction baseDamageReduction, IReceiveHitStrategy receiveHitStrategy, Coordinate position, IWorldItem inventory, bool isPlayer, PositiveInt? id = null )
         {
             Name = name;
             HitPoints = hitPoints;
             BaseDamageReduction = baseDamageReduction;
             Position = position; 
             Inventory = inventory;
+            IsPlayer = isPlayer;
             _receiveHitStrategy = receiveHitStrategy;
             if(id is null)
             {
@@ -88,7 +89,7 @@ namespace MandatoryAssignment.AbstractModels
         /// <returns>A PositiveInt representing the damage</returns>
         protected abstract PositiveInt HitWithItem(IWorldItem item);
 
-        public void Loot(ILootable obj)
+        public virtual void Loot(ILootable obj)
         {
             obj.LootItems(this);
             
@@ -117,12 +118,13 @@ namespace MandatoryAssignment.AbstractModels
             }
         }
 
-        public virtual IMoveResult Move(Coordinate newPos, IWorld world)
+        public virtual IMoveResult Move(int newX, int newY, IWorld world)
         {
-            if (newPos.y > world.MaxY || newPos.x > world.MaxX)
+            if (newY > world.MaxY || newX > world.MaxX || newY < 0 || newX < 0)
             {
                 return new MoveResult(false, "Position out of bounds");
             }
+            Coordinate newPos = new Coordinate(newX, newY);
             if (world.WorldEntities.Read(newPos) != null)
             {
                 return new MoveResult(false, "Another entity is blocking the position");
@@ -135,7 +137,7 @@ namespace MandatoryAssignment.AbstractModels
                     return new MoveResult(false, "A non-walkable object is blocking the position");
                 }
             }
-            if(world.WorldEntities.Read(Position) != null)
+            if(world.WorldEntities.Read(newPos) is null)
             {
                 world.WorldEntities.Delete(Position);
                 Position = newPos;

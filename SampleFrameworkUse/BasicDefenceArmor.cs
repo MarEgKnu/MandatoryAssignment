@@ -10,7 +10,7 @@ namespace SampleFrameworkUse
 {
     public class BasicDefenceArmor : DefenceItem
     {
-        protected BasicDefenceArmor(string name) : base(name)
+        public BasicDefenceArmor(string name) : base(name)
         {
         }
 

@@ -18,11 +18,13 @@ namespace SampleFrameworkUse
             bool finished = false;
             while (!finished)
             {
-                foreach (IWorldEntity entity in state.World.WorldEntities.ReadAll())
+                foreach (PositiveInt ID in state.World.WorldEntities.GetIDKeys().ToArray())
                 {
+                    IWorldEntity entity = state.World.WorldEntities.Read(ID);
                     if(entity.IsPlayer)
                     {
                         state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, @"Players turn now! Press L to move left, R to move right, U to move up, D to move down, or Q to quit");
+                        state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Current player coordinates: {entity.Position}");
                         ConsoleKeyInfo key = Console.ReadKey();
                         Coordinate newPos = new Coordinate(entity.Position.x - 1, entity.Position.y);
                         switch (key.KeyChar)
@@ -50,8 +52,9 @@ namespace SampleFrameworkUse
 
         private void MoveEntity(IWorldEntity entity, IGameState state, int x, int y)
         {
-            Coordinate newPos = new Coordinate(entity.Position.x + x, entity.Position.y + y);
-            IMoveResult result = entity.Move(newPos, state.World);
+            int newY = (int)entity.Position.y + y;
+            int newX = (int)entity.Position.x + x;
+            IMoveResult result = entity.Move(newX, newY , state.World);
             if(entity.IsPlayer)
             {
                 state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Player move result: {result.IsSuccess}, with with reason: {result.Message}");

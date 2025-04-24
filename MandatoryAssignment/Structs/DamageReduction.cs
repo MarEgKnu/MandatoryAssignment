@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Structs
 {
+    /// <summary>
+    /// A struct representing damage reduction, including flat and decimal reductions.
+    /// </summary>
     public readonly struct DamageReduction
     {
         private readonly int _dmgReductionFlat = 0;

@@ -14,16 +14,23 @@ namespace MandatoryAssignment.AbstractModels
         {
             Name = name;
         }
+        /// <summary>
+        /// The name of the attack item
+        /// </summary>
         public string Name { get; set; }
-
+        /// <summary>
+        /// Gets the hit damage of the weapon
+        /// </summary>
+        /// <param name="user">The entity using the weapon</param>
+        /// <returns>A positive integer denoting the amount of damage</returns>
         public abstract PositiveInt Hit(IWorldEntity user);
-
+        /// <summary>
+        /// Gets the range of the weapon
+        /// </summary>
+        /// <param name="user">The entity using the weapon</param>
+        /// <returns>A positive integer denoting range of the weapon in tiles</returns>
         public abstract PositiveInt Range(IWorldEntity user);
 
-        public void Use(IWorldEntity user)
-        {
-            // nothing
-        }
 
         //public virtual void UseOn(IWorldEntity user, IWorldEntity target)
         //{

@@ -10,6 +10,9 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class GameState : IGameState
     {
+        /// <summary>
+        /// A global reference to the newest GameState object created.
+        /// </summary>
         public static IGameState CurrentState { get; private set; }
         protected GameState(IWorld world, ConfigLoader config, Logger logger, IGameLoop gameLoop)
         {

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.Interfaces
 {
+    /// <summary>
+    /// A interface representing a ingame object.
+    /// </summary>
     public interface IWorldObject : ILootable, IRemovable, IWalkable
     {
         /// <summary>

@@ -13,7 +13,14 @@ namespace MandatoryAssignment.Interfaces
     /// </summary>
     public interface IWorldEntity
     {
-
+        /// <summary>
+        /// Event which fires when the entity is hit by damage. Returns the subject being hit, and the damage taken in EventArgs
+        /// </summary>
+        public event Action<IWorldEntity, EventArgs> OnHit;
+        /// <summary>
+        /// Event which fires when the entity dies. Returns the subject being hit, and the damage taken in EventArgs
+        /// </summary>
+        public event Action<IWorldEntity, EventArgs> OnDeath;
         /// <summary>
         /// Bool representing if the current entity is player-controlled
         /// </summary>
@@ -65,9 +72,10 @@ namespace MandatoryAssignment.Interfaces
         /// <summary>
         /// Moves the entity to the specified coordinates. Collision check with other objects should be checked at the IWorld level.
         /// </summary>
-        /// <param name="newPos">The new position to move to</param>
+        /// <param name="newX">The new x position to move to</param>
+        /// <param name="newY">The new y position to move to</param>
         /// <param name="world">The injected world object</param>
-        IMoveResult Move(Coordinate newPos, IWorld world );
+        IMoveResult Move(int newX, int newY, IWorld world );
 
     }
 }

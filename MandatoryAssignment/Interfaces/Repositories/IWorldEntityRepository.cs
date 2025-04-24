@@ -13,6 +13,10 @@ namespace MandatoryAssignment.Interfaces.Repositories
     public interface IWorldEntityRepository : IAdd<IWorldEntity>, IKeyedDelete<PositiveInt, IWorldEntity>, IKeyedRead<PositiveInt, IWorldEntity>, IKeyedUpdate<PositiveInt, IWorldEntity>, IReadAll<IWorldEntity>,
                                               IKeyedDelete<Coordinate, IWorldEntity>, IKeyedRead<Coordinate, IWorldEntity>, IKeyedUpdate<Coordinate, IWorldEntity>
     {
-
+        /// <summary>
+        /// Returns an Icollection of all entity IDs which serve as unique keys
+        /// </summary>
+        /// <returns>An Icollection of all entity IDs</returns>
+        ICollection<PositiveInt> GetIDKeys();
     }
 }

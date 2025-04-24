@@ -79,11 +79,20 @@ namespace MandatoryAssignment.Structs
         }
         public override bool Equals([NotNullWhen(true)] object? obj)
         {
-            return Value.Equals(obj);
+            if (obj == null) return false;
+            if(obj is PositiveInt posInt)
+            {
+                return Value.Equals(posInt.Value);
+            }
+            else
+            {
+                return Value.Equals(obj);
+            }
+            
         }
         public override int GetHashCode()
         {
-            return Value;
+            return Value.GetHashCode();
         }
 
     }

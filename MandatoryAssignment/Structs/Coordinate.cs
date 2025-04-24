@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MandatoryAssignment.Structs
 {
     /// <summary>
-    /// Represents a 2-dimenstional coordinate in the game world
+    /// Represents a 2-dimenstional coordinate in the game world. Can not have negaitve numbers as coordinates
     /// </summary>
     public readonly struct Coordinate
     {
@@ -34,6 +34,10 @@ namespace MandatoryAssignment.Structs
             }
             return false;
             
+        }
+        public override string ToString()
+        {
+            return string.Concat("X: ", x, " Y: ", y);
         }
         public override int GetHashCode()
         {

@@ -37,7 +37,7 @@ namespace MandatoryAssignment.Interfaces
 
         /// <summary>
         /// Applies changes to the state object based on the content of the config file, and the type of ConfigLoader provided.
-        /// Will have side-effects in the state object and its properties, and may change "Initialized" to true either inside the call, or right after
+        /// Might have side-effects in the state object and its properties, and may change "Initialized" to true either inside the call, or right after
         /// </summary>
         public void LoadConfig();
     }
