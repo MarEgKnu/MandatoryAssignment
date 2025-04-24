@@ -53,10 +53,10 @@ namespace MandatoryAssignment.AbstractModels
         public virtual void LootItems(IWorldEntity looter)
         {
             if(Loot is null) { return; }
-            if (looter.Inventory != null && looter.Inventory is ContainerItem inv)
+            if (looter.Inventory != null && looter.Inventory is ContainerItem looterInv)
             {
 
-                inv.Take(Loot);
+                looterInv.Take(Loot, looter);
 
             }
             else

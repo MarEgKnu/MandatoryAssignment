@@ -17,9 +17,9 @@ namespace MandatoryAssignment.Models
             _grid = new IGridData[x, y];
         }
 
-        public uint MaxY { get { return (uint)_grid.GetLongLength(1); } }
+        public PositiveInt MaxY { get { return _grid.GetLength(1); } }
 
-        public uint MaxX { get { return (uint)_grid.GetLongLength(0); } }
+        public PositiveInt MaxX { get { return _grid.GetLength(0); } }
 
         public IWorldObject? GetObjectAtCoordinate(Coordinate coords)
         {

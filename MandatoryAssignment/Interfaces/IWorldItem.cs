@@ -12,11 +12,6 @@ namespace MandatoryAssignment.Interfaces
     public interface IWorldItem
     {
         /// <summary>
-        /// Use the item, potentially having side-effects on the user based on behavour implemented in derived classes
-        /// </summary>
-        /// <param name="user">The IWorldEntity using the item</param>
-        void Use(IWorldEntity user);
-        /// <summary>
         /// The name of the Item
         /// </summary>
         string Name { get; set; }

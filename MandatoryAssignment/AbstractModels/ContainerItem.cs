@@ -114,9 +114,5 @@ namespace MandatoryAssignment.AbstractModels
             return _items;
         }
 
-        public void Use(IWorldEntity user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

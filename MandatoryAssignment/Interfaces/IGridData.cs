@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MandatoryAssignment.Structs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace MandatoryAssignment.Interfaces
     {
         ushort TileID { get; }
 
-        uint WorldObjectID { get; }
+        PositiveInt WorldObjectID { get; }
 
-        uint WorldEntityID { get; }
+        PositiveInt WorldEntityID { get; }
     }
 }

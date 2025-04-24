@@ -25,18 +25,13 @@ namespace MandatoryAssignment.AbstractModels
             // nothing
         }
 
-        public virtual void UseOn(IWorldEntity user, IWorldEntity target)
-        {
-            Coordinate diff = user.Position.XYDiffrence(target.Position);
-            if(Math.Max(diff.x, diff.y) <= Range(user))
-            {
-                target.ReceiveHit(Hit(user));
-            }          
-        }
-
-        public void UseOn(IWorldEntity user, IWorldObject target)
-        {
-            // nothing
-        }
+        //public virtual void UseOn(IWorldEntity user, IWorldEntity target)
+        //{
+        //    Coordinate diff = user.Position.XYDiffrence(target.Position);
+        //    if(Math.Max(diff.x, diff.y) <= Range(user))
+        //    {
+        //        target.ReceiveHit(Hit(user));
+        //    }          
+        //}
     }
 }

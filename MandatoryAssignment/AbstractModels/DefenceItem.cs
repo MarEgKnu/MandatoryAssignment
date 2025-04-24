@@ -8,30 +8,16 @@ using System.Threading.Tasks;
 
 namespace MandatoryAssignment.AbstractModels
 {
-    public class DefenceItem : IWorldItem
+    public abstract class DefenceItem : IWorldItem
     {
-        protected DefenceItem(string name, DamageReduction damageReduction)
+        protected DefenceItem(string name)
         {
             Name = name;
-            DamageReduction = damageReduction;
         }
         public string Name { get; set; }
 
-        public DamageReduction DamageReduction { get; }
 
-        public void Use(IWorldEntity user)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract DamageReduction GetDamageReduction();
 
-        public void UseOn(IWorldEntity user, IWorldEntity target)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UseOn(IWorldEntity user, IWorldObject target)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -17,12 +17,7 @@ namespace SampleFrameworkUse.Utility
     
     public class SampleConfigLoader : ConfigLoader
     {
-        private IDictionary<string, IDifficulty> _selectableDifficulties = new Dictionary<string, IDifficulty>
-        {
-            {NormalDifficulty.Instance.Name, NormalDifficulty.Instance },
-            {NoviceDifficulty.Instance.Name, NoviceDifficulty.Instance },
-            {TrainedDifficulty.Instance.Name,TrainedDifficulty.Instance }
-        };
+
         private IDifficulty defaultDifficulty = NormalDifficulty.Instance;
         public SampleConfigLoader(string path) : base(path)
         {
@@ -32,9 +27,6 @@ namespace SampleFrameworkUse.Utility
         {
             switch(node.Name.ToLower())
             {
-                case "difficulties":
-                    ParseSelectableDifficulties(node, state);
-                    break;
                 case "selected-difficulty":
                     ParseSelectedDifficulty(node, state);
                     break;
@@ -47,27 +39,30 @@ namespace SampleFrameworkUse.Utility
                 case "maxx":
                     ParseMaxX(node, state);
                     break;
+                default:
+                    state.Logger.TraceEvent(TraceEventType.Warning, 0, $"Unknown top level node with name {node.Name}, skipping");
+                    break;
 
 
             }
         }
-        private void ParseSelectableDifficulties(XmlNode node, IGameState state)
-        {
-            if (node.ChildNodes.Count > 0)
-            {
-                foreach (XmlNode subNode in node.ChildNodes)
-                {
-                    if (_selectableDifficulties.TryGetValue(subNode.InnerText, out IDifficulty diff))
-                    {
-                        state.World.SelectableDifficulties.Add(diff.Name, diff);
-                    }
-                    else
-                    {
-                        state.Logger.TraceEvent(TraceEventType.Warning, 0, $"Difficulty entry {node.InnerText} is not a valid difficulty, skipping");
-                    }
-                }
-            }
-        }
+        //private void ParseSelectableDifficulties(XmlNode node, IGameState state)
+        //{
+        //    if (node.ChildNodes.Count > 0)
+        //    {
+        //        foreach (XmlNode subNode in node.ChildNodes)
+        //        {
+        //            if (_selectableDifficulties.TryGetValue(subNode.InnerText, out IDifficulty diff))
+        //            {
+        //                state.World.SelectableDifficulties.Add(diff.Name, diff);
+        //            }
+        //            else
+        //            {
+        //                state.Logger.TraceEvent(TraceEventType.Warning, 0, $"Difficulty entry {node.InnerText} is not a valid difficulty, skipping");
+        //            }
+        //        }
+        //    }
+        //}
         private void ParseSelectedDifficulty(XmlNode node, IGameState state)
         {
             IDifficulty? selected = state.World.SelectableDifficulties.Read(node.InnerText);
@@ -105,7 +100,8 @@ namespace SampleFrameworkUse.Utility
                     state.Logger.AddListener(new ConsoleTraceListener());
                     break;
                 case "logfile":
-                    state.Logger.AddListener(new TextWriterTraceListener(@".\logs\traceLog.txt"));
+                    Stream file = File.OpenWrite(@".\traceLog.txt");
+                    state.Logger.AddListener(new TextWriterTraceListener(file));
                     break;
             }
         }

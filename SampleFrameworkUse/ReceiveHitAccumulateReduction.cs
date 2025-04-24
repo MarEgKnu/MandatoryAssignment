@@ -23,7 +23,7 @@ namespace SampleFrameworkUse
                 {
                     if(item is DefenceItem defenceItem)
                     {
-                        dmgReduction += defenceItem.DamageReduction;
+                        dmgReduction += defenceItem.GetDamageReduction();
                     }
                     
                 }
@@ -32,7 +32,7 @@ namespace SampleFrameworkUse
             {
                 if (receiver.Inventory is DefenceItem defenceItem)
                 {
-                    dmgReduction += defenceItem.DamageReduction;
+                    dmgReduction += defenceItem.GetDamageReduction();
                 }
             }
             PositiveInt actualDmg = (PositiveInt)Math.Round(incomingDmg * dmgReduction.DmgReductionDecimal, 0);

@@ -40,11 +40,12 @@ namespace MandatoryAssignment.AbstractModels
             }
             Config.LoadConfig(this);
             World.Initialize();
+            Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, "Config file fully loaded");
         }
 
         public void StartGameLoop()
         {
-            GameLoop.Start();
+            GameLoop.Start(this);
         }
     }
 }
