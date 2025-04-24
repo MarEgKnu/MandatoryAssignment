@@ -23,7 +23,9 @@ namespace MandatoryAssignment.Interfaces
         /// An IDifficultyRepository containing all the selectable difficulties currently in the game.
         /// </summary>
         IDifficultyRepository SelectableDifficulties { get; }
-
+        /// <summary>
+        /// The movement manager object managing the moves of entities.
+        /// </summary>
         IMovementManager MovementManager { get; }
 
         /// <summary>
