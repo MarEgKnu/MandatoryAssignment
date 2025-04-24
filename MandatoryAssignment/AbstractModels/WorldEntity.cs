@@ -117,6 +117,10 @@ namespace MandatoryAssignment.AbstractModels
                 return true;
             }
         }
+        public override string ToString()
+        {
+            return string.Concat(Name, " : ", ID, " : HP: ", HitPoints);
+        }
 
         /// <summary>
         /// Generates a unique Positive integer ID which must not be 0 if the id parameter in the constructor is omitted or null. May be overwritten in subclasses
