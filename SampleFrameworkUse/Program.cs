@@ -63,8 +63,11 @@ player.OnHit += playerHitObserver.Update;
 // create player character
 gameState.World.WorldEntities.Add(player);
 
+//enemy monster
+IWorldEntity monster = new SampleMonster("Gremlin", 40, new DamageReduction(2, 0), receiveHitStrategy, new Coordinate(5, 5), enemyItem, false);
+
 // create enemy monster
-gameState.World.WorldEntities.Add(new SampleMonster("Gremlin", 40, new DamageReduction(2, 0), receiveHitStrategy, new Coordinate(5, 5), enemyItem, false));
+gameState.World.WorldEntities.Add(monster);
 
 IWorldObjectFactory lootFactory;
 //use factory to create loot objects based on difficulty
@@ -84,5 +87,8 @@ else
 Coordinate position = new Coordinate(6, 6);
 // add loot object to the game world
 gameState.World.WorldObjects.Add(lootFactory.CreateObject(position));
+
+//make the monster attack the player to test observers
+player.ReceiveHit(monster.Hit());
 
 gameState.StartGameLoop();
