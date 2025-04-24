@@ -118,39 +118,6 @@ namespace MandatoryAssignment.AbstractModels
             }
         }
 
-        public virtual IMoveResult Move(int newX, int newY, IWorld world)
-        {
-            if (newY > world.MaxY || newX > world.MaxX || newY < 0 || newX < 0)
-            {
-                return new MoveResult(false, "Position out of bounds");
-            }
-            Coordinate newPos = new Coordinate(newX, newY);
-            if (world.WorldEntities.Read(newPos) != null)
-            {
-                return new MoveResult(false, "Another entity is blocking the position");
-            }
-            IWorldObject? collidingObj = world.WorldObjects.Read(newPos);
-            if (collidingObj != null)
-            {
-                if (!collidingObj.CanWalk(this))
-                {
-                    return new MoveResult(false, "A non-walkable object is blocking the position");
-                }
-            }
-            if(world.WorldEntities.Read(newPos) is null)
-            {
-                world.WorldEntities.Delete(Position);
-                Position = newPos;
-                world.WorldEntities.Add(this);
-                return new MoveResult(true, "Sucessfully walked to the destination");
-            }
-            else
-            {
-                GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Error, 0, $"Entity {{{this}}} was not found in the entity repository when trying to move!");
-                return new MoveResult(false, "Entity cannot be located in the entity repository");
-            }
-            
-        }
         /// <summary>
         /// Generates a unique Positive integer ID which must not be 0 if the id parameter in the constructor is omitted or null. May be overwritten in subclasses
         /// </summary>

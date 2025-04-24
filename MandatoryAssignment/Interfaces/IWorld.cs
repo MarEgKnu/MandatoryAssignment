@@ -24,6 +24,8 @@ namespace MandatoryAssignment.Interfaces
         /// </summary>
         IDifficultyRepository SelectableDifficulties { get; }
 
+        IMovementManager MovementManager { get; }
+
         /// <summary>
         /// The currently selected difficulty for the world
         /// </summary>

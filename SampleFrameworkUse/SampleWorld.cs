@@ -12,7 +12,7 @@ namespace SampleFrameworkUse
 {
     public class SampleWorld : World
     {
-        public SampleWorld(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties, PositiveInt maxY, PositiveInt maxX, IDifficulty selectedDiff) : base(worldObjectRepo, worldEntities, difficulties, maxY, maxX, selectedDiff )
+        public SampleWorld(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties, PositiveInt maxY, PositiveInt maxX, IDifficulty selectedDiff, IMovementManager movementManager) : base(worldObjectRepo, worldEntities, difficulties, maxY, maxX, selectedDiff, movementManager)
         {
         }
     }

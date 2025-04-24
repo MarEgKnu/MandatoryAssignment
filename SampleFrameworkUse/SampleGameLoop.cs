@@ -54,13 +54,12 @@ namespace SampleFrameworkUse
         {
             int newY = (int)entity.Position.y + y;
             int newX = (int)entity.Position.x + x;
-            IMoveResult result = entity.Move(newX, newY , state.World);
+            IMoveResult result = state.World.MovementManager.TryMoveEntity(entity ,newX, newY , state.World);
             if(entity.IsPlayer)
             {
                 state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Player move result: {result.IsSuccess}, with with reason: {result.Message}");
             }
-            
-            
+                     
         }
     }
 }

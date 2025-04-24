@@ -69,13 +69,5 @@ namespace MandatoryAssignment.Interfaces
         /// <param name="obj">The object to loot</param>
         void Loot(ILootable obj);
 
-        /// <summary>
-        /// Moves the entity to the specified coordinates. Collision check with other objects should be checked at the IWorld level.
-        /// </summary>
-        /// <param name="newX">The new x position to move to</param>
-        /// <param name="newY">The new y position to move to</param>
-        /// <param name="world">The injected world object</param>
-        IMoveResult Move(int newX, int newY, IWorld world );
-
     }
 }
