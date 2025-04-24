@@ -13,15 +13,33 @@ namespace MandatoryAssignment.AbstractModels
     /// </summary>
     public abstract class ContainerItem : IWorldItem
     {
-        protected ContainerItem(string name, PositiveInt capacity, IList<IWorldItem> items)
+        protected ContainerItem(string name, IList<IWorldItem> items, ICollection<PositiveInt> freeSlots)
         {
+            freeSlots.Clear();
+            FreeSlots = freeSlots;
             Name = name;
-            Capacity = capacity;
             _items = items;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if(items[i] == null)
+                {
+                    FreeSlots.Add(i);
+                }
+            }
         }
 
         protected IList<IWorldItem> _items;
-        public PositiveInt Capacity { get; protected set; }
+
+        public PositiveInt? FirstFreeSlot { get
+            {
+                return FreeSlots.FirstOrDefault();
+            } }
+
+        public ICollection<PositiveInt> FreeSlots { get; protected set; }
+        public PositiveInt Capacity { get
+            {
+                return _items.Count;
+            } }
         public string Name { get; set; }
         
 
@@ -63,6 +81,14 @@ namespace MandatoryAssignment.AbstractModels
         /// <param name="item"></param>
         /// <returns>True if the item was sucessfully removed, false if not</returns>
         public abstract bool Remove(IWorldItem item);
+
+        /// <summary>
+        /// Takes items from the target inventory, removing them from it and adding those items to this inventory
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="inventoryOwner">The entity doing the taking. Null if no applicable entity</param>
+        /// <returns>True if atleast one item was taken, false if not</returns>
+        public abstract bool Take(IWorldItem item, IWorldEntity inventoryOwner);
 
 
         /// <summary>

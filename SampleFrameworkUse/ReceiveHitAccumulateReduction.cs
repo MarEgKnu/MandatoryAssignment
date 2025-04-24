@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MandatoryAssignment.Models
+namespace SampleFrameworkUse
 {
+    /// <summary>
+    /// Strategy for receving hit which takes BaseDmgReuduction into account, and sums all defence item stats to compute the final damage reduction.
+    /// </summary>
     public class ReceiveHitAccumulateReduction : IReceiveHitStrategy
     {
         public PositiveInt ComputeDamage(PositiveInt incomingDmg, IWorldEntity receiver)

@@ -13,10 +13,11 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class WorldObject : IWorldObject
     {
-        public WorldObject(string name, IWorldItem loot, PositiveInt? id = null)
+        public WorldObject(string name, IWorldItem loot, Coordinate position, PositiveInt? id = null)
         {
             Name = name;
             Loot = loot;
+            Position = position;
             if(id is null)
             {
                 ID = GenerateNextUniqueID();
@@ -32,7 +33,7 @@ namespace MandatoryAssignment.AbstractModels
         public PositiveInt ID { get; }
         public string Name { get; }
 
-        public IWorldItem Loot {  get; }
+        public IWorldItem Loot { get; protected set; }
 
         public Coordinate Position {  get; }
 
@@ -55,12 +56,13 @@ namespace MandatoryAssignment.AbstractModels
             if (looter.Inventory != null && looter.Inventory is ContainerItem inv)
             {
 
-                inv.Add(Loot);
+                inv.Take(Loot);
 
             }
             else
             {
                 looter.Inventory = Loot;
+                Loot = null;
             }
         }
 

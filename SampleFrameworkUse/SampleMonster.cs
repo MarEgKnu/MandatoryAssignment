@@ -17,7 +17,11 @@ namespace SampleFrameworkUse
 
         protected override PositiveInt HitWithItem(IWorldItem item)
         {
-            throw new NotImplementedException();
+            if(item is AttackItem atkItem)
+            {
+                return atkItem.Hit(this);
+            }
+            return 0;
         }
     }
 }
