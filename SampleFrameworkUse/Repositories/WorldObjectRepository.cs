@@ -14,6 +14,13 @@ namespace SampleFrameworkUse.Repositories
     {
         IDictionary<PositiveInt, IWorldObject> _idIndex;
         IDictionary<Coordinate, IWorldObject> _coordinateIndex;
+
+        public WorldObjectRepository()
+        {
+            _idIndex = new Dictionary<PositiveInt, IWorldObject>();
+            _coordinateIndex = new Dictionary<Coordinate, IWorldObject>();
+        }
+
         public bool Add(IWorldObject value)
         {
             if (_idIndex.ContainsKey(value.ID))

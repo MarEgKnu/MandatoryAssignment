@@ -27,6 +27,10 @@ namespace MandatoryAssignment.Utility
         {
             _traceSource.Listeners.Remove(name);
         }
+        public void SetSourceSwitch(SourceSwitch sw)
+        {
+            _traceSource.Switch = sw;
+        }
 
         public virtual void TraceEvent(TraceEventType type, int id, string message)
         {

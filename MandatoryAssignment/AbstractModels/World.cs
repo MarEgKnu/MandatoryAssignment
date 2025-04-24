@@ -15,12 +15,15 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties)
+        protected World(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties, PositiveInt maxY, PositiveInt maxX, IDifficulty selectedDiff)
         {
             Initialized = false;
             WorldObjects = worldObjectRepo;
             WorldEntities = worldEntities;
             SelectableDifficulties = difficulties;
+            SelectedDifficulty = selectedDiff;
+            MaxX = maxX;
+            MaxY = maxY;
         }
         protected PositiveInt _maxX;
         protected PositiveInt _maxY;

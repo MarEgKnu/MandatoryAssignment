@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MandatoryAssignment.Models
+namespace SampleFrameworkUse.Difficulties
 {
     public class NoviceDifficulty : IDifficulty
     {

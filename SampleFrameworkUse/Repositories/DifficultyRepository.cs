@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MandatoryAssignment.Models.Repositories
+namespace SampleFrameworkUse.Repositories
 {
     /// <summary>
     /// Basic conrete class for a DifficultyRepository, using objects implementing IDictionary to store items. 
