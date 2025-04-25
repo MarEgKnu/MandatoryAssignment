@@ -49,7 +49,7 @@ namespace SampleFrameworkUse
                                 break;
                         }
                     }
-                    else
+                    else if (entity.HitPoints > 0)
                     {
                         MonsterFightPlayer(entity, state);
                     }
@@ -88,7 +88,7 @@ namespace SampleFrameworkUse
             int atkY = (int)player.Position.y + y;
             int atkX = (int)player.Position.x + x;
             IFightResult result = state.World.CombatManager.TryFight(player, atkX, atkY, state.World);
-            state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Player fight result: {result.Sucess}, reason: {result.ResultMessage}");
+            state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Player fight result: {result.Sucess}, reason: {result.ResultMessage}, target dead: {result.IsDead}");
         }
         private void MonsterFightPlayer(IWorldEntity entity, IGameState state)
         {
@@ -99,7 +99,12 @@ namespace SampleFrameworkUse
                     IFightResult result = state.World.CombatManager.TryFight(entity, target.ID, state.World);
                     if(result.Sucess)
                     {
-                        state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Monster fight result: {result.Sucess}, reason: {result.ResultMessage}");
+                        state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"Monster fight result: {result.Sucess}, reason: {result.ResultMessage}, target dead: {result.IsDead}");
+                    }
+                    if(result.IsDead)
+                    {
+                        state.Logger.TraceEvent(System.Diagnostics.TraceEventType.Information, 0, $"GAME OVER");
+                        finished = true;
                     }
                 }
             }

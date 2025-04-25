@@ -90,7 +90,5 @@ Coordinate position = new Coordinate(6, 6);
 // add loot object to the game world
 gameState.World.WorldObjects.Add(lootFactory.CreateObject(position));
 
-//make the monster attack the player to test observers
-player.ReceiveHit(monster.Hit());
 
 gameState.StartGameLoop();

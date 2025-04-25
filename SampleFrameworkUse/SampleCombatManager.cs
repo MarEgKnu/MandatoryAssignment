@@ -15,16 +15,20 @@ namespace SampleFrameworkUse
             IWorldEntity? target = world.WorldEntities.Read(entityID);
             if(target == null)
             {
-                return new FightResult(false, "No entity with such ID exists");
+                return new FightResult(false, "No entity with such ID exists", false);
             }
             else if(initiator.Position.IsInRange(target.Position, 1))
             {
-                target.ReceiveHit(initiator.Hit());
-                return new FightResult(true, "Sucessfully delevered damage to entity");
+                bool isAlive = target.ReceiveHit(initiator.Hit());
+                if(!isAlive)
+                {
+                    return new FightResult(true, "Sucessfully delevered damage to entity and was killed", true);
+                }
+                return new FightResult(true, "Sucessfully delevered damage to entity", false);
             }
             else
             {
-                return new FightResult(false, "Not in range to attack");
+                return new FightResult(false, "Not in range to attack", false);
             }
         }
 
@@ -32,22 +36,26 @@ namespace SampleFrameworkUse
         {
             if(x < 0 || y < 0)
             {
-                return new FightResult(false, "Coordinates out of bounds");
+                return new FightResult(false, "Coordinates out of bounds", false);
             }
             Coordinate position = new Coordinate(x, y);
             IWorldEntity? target = world.WorldEntities.Read(position);
             if (target == null)
             {
-                return new FightResult(false, "No entity at those coords exist");
+                return new FightResult(false, "No entity at those coords exist", false);
             }
             else if (initiator.Position.IsInRange(target.Position, 1))
             {
-                target.ReceiveHit(initiator.Hit());
-                return new FightResult(true, "Sucessfully delevered damage to entity");
+                bool isAlive = target.ReceiveHit(initiator.Hit());
+                if (!isAlive)
+                {
+                    return new FightResult(true, "Sucessfully delevered damage to entity and was killed", true);
+                }
+                return new FightResult(true, "Sucessfully delevered damage to entity", false);
             }
             else
             {
-                return new FightResult(false, "Not in range to attack");
+                return new FightResult(false, "Not in range to attack", false);
             }
         }
     }

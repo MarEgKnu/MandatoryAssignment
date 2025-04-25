@@ -13,5 +13,9 @@
         /// Result message giving additional context and/or reason for why it was sucessful or not
         /// </summary>
         string ResultMessage { get; }
+        /// <summary>
+        /// True if the attack resulted in the entities death
+        /// </summary>
+        bool IsDead { get; }
     }
 }
