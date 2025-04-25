@@ -15,7 +15,7 @@ namespace MandatoryAssignment.AbstractModels
 {
     public abstract class World : IWorld
     {
-        protected World(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties, PositiveInt maxY, PositiveInt maxX, IDifficulty selectedDiff, IMovementManager movementManager)
+        protected World(IWorldObjectRepository worldObjectRepo, IWorldEntityRepository worldEntities, IDifficultyRepository difficulties, PositiveInt maxY, PositiveInt maxX, IDifficulty selectedDiff, IMovementManager movementManager, ICombatManager combatManager)
         {
             Initialized = false;
             WorldObjects = worldObjectRepo;
@@ -23,6 +23,7 @@ namespace MandatoryAssignment.AbstractModels
             SelectableDifficulties = difficulties;
             SelectedDifficulty = selectedDiff;
             MovementManager = movementManager;
+            CombatManager = combatManager;
             MaxX = maxX;
             MaxY = maxY;
         }
@@ -38,6 +39,7 @@ namespace MandatoryAssignment.AbstractModels
         protected IWorldEntityRepository _worldEntities;
         protected IWorldObjectRepository _worldObjects;
         protected IMovementManager _movementManager;
+        protected ICombatManager _combatManager;
         public IWorldEntityRepository WorldEntities 
         { 
             get 
@@ -52,6 +54,23 @@ namespace MandatoryAssignment.AbstractModels
                     return;
                 }
                 _worldEntities = value;
+            }
+        }
+
+        public ICombatManager CombatManager
+        {
+            get
+            {
+                return _combatManager;
+            }
+            set
+            {
+                if (Initialized)
+                {
+                    GameState.CurrentState.Logger.TraceEvent(System.Diagnostics.TraceEventType.Warning, 0, $"class {this.GetType().Name} tired to call {MethodBase.GetCurrentMethod().Name} even after it was initialized");
+                    return;
+                }
+                _combatManager = value;
             }
         }
 

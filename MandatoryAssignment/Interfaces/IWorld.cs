@@ -24,6 +24,10 @@ namespace MandatoryAssignment.Interfaces
         /// </summary>
         IDifficultyRepository SelectableDifficulties { get; }
         /// <summary>
+        /// The combat manager object managing combat between entities.
+        /// </summary>
+        ICombatManager CombatManager { get; }
+        /// <summary>
         /// The movement manager object managing the moves of entities.
         /// </summary>
         IMovementManager MovementManager { get; }

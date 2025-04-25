@@ -26,7 +26,9 @@ PositiveInt maxX = new PositiveInt(100);
 
 IMovementManager movementMgr = new SampleMovementManager();
 
-IWorld world = new SampleWorld(objRepo, entityRepo, difficultyRepository, maxY, maxX, selectedDiff, movementMgr);
+ICombatManager combatMgr = new SampleCombatManager();
+
+IWorld world = new SampleWorld(objRepo, entityRepo, difficultyRepository, maxY, maxX, selectedDiff, movementMgr, combatMgr);
 
 ConfigLoader configLoader = new SampleConfigLoader(@".\config\config.xml");
 
