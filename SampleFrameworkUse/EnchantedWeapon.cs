@@ -16,6 +16,8 @@ namespace SampleFrameworkUse
     {
         public EnchantedWeapon(string name, AttackItem wrapee, int bonusDamage, int bonusRange) : base(name, wrapee)
         {
+            BonusDamage = bonusDamage;
+            BonusRange = bonusRange;
         }
 
         public int BonusRange { get; protected set; }
